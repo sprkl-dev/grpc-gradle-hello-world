@@ -10,7 +10,7 @@ public class GreeterServerImpl extends GreeterGrpc.GreeterImplBase {
     @Override
     public void sayHello(HelloRequest request, StreamObserver<HelloReply> responseObserver) {
 
-        responseObserver.onNext(HelloReply.newBuilder().setMessage("moishe!").build());
+        responseObserver.onNext(HelloReply.newBuilder().setMessage("hello " + request.getName()+ "!").build());
 
         responseObserver.onCompleted();
     }
