@@ -43,8 +43,8 @@ dependencies {
     runtimeOnly "io.grpc:grpc-netty-shaded:${grpcVersion}"
 
     testImplementation "io.grpc:grpc-testing:${grpcVersion}"
-    testImplementation "junit:junit:4.12"
-    testImplementation "org.mockito:mockito-core:3.4.0"
+//    testImplementation "junit:junit:4.12"
+//    testImplementation "org.mockito:mockito-core:3.4.0"
 }
 
 protobuf {
@@ -123,5 +123,10 @@ sourceSets {
     }
 }
 
-
+idea {
+    module {
+        sourceDirs += file('build/generated/source/proto/main/grpc');
+        sourceDirs += file('build/generated/source/proto/main/java');
+    }
+}
 

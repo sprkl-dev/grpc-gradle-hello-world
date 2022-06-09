@@ -7,6 +7,9 @@ import io.grpc.Channel;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.StatusRuntimeException;
+import io.grpc.examples.GreeterGrpc;
+import io.grpc.examples.HelloReply;
+import io.grpc.examples.HelloRequest;
 
 public class App {
     public String getGreeting() {
@@ -15,7 +18,12 @@ public class App {
 
     public static void main(String[] args) {
         System.out.println(new App().getGreeting());
-        ManagedChannel channel = ManagedChannelBuilder.forTarget(target).usePlaintext().build();
+        ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 3000).usePlaintext().build();
+
+        GreeterGrpc.GreeterBlockingStub stub = GreeterGrpc.newBlockingStub(channel);
+        HelloReply reply = stub.sayHello(HelloRequest.newBuilder().setName("moishe").build());
+
+        System.out.println(reply);
 
     }
 }
